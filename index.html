@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./assets/css/login.css">
+    <title>Calcula Frete</title>
+</head>
+
+<body>
+    <div class="page">
+        <header class="site-header">
+            <div class="brand">
+                <div class="logo" aria-hidden="true">VC</div>
+                <div class="brand-text">
+                    <h1>Vision Calculate</h1>
+                    <p class="tagline">Seguro. Pontual. Profissional.</p>
+                </div>
+            </div>
+        </header>
+
+        <div class="container">
+            <div class="form">
+                <h3>Bem vindo de volta</h3>
+                <form action="">
+                    <label for="usuario">Usuário</label>
+                    <input type="text" id="usuario">
+
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha">
+
+                    <button type="submit">Entrar</button>
+                </form>
+                <span>Ainda não tem cadastro? clique <a href="./assets/pages/cadastroUsuario.html">aqui</a></span>
+            </div>
+        </div>
+
+        <footer class="site-footer">
+            <small>Vision Tech — &copy; <span id="year"></span></small>
+        </footer>
+    </div>
+
+<script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>

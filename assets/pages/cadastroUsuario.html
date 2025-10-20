@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../css/cadastroUsuario.css">
+    <link rel="stylesheet" href="../css/customAlert.css">
+    <title>Cadastro usuário — Vision Calculate</title>
+</head>
+
+<body>
+    <div class="page">
+        <header class="site-header">
+            <div class="brand">
+                <div class="logo" aria-hidden="true">VC</div>
+                <div class="brand-text">
+                    <h1>Vision Calculate</h1>
+                    <p class="tagline">Seguro. Pontual. Profissional.</p>
+                </div>
+            </div>
+        </header>
+
+        <main class="container">
+            <section class="card">
+                <h2>Cadastro de usuário</h2>
+                <p class="lead">Crie uma conta para acessar o portal de operações e acompanhar cargas.</p>
+
+                <form class="formCadastro" id="form-cadastro" action="#" method="post" novalidate>
+                    <label for="usuarioCadastro">Usuário</label>
+                    <input type="text" id="usuarioCadastro" name="usuario" placeholder="usuário" required>
+
+                    <label for="email">E‑mail</label>
+                    <input type="email" id="email" name="email" placeholder="seu@empresa.com" required>
+
+                    <label for="senhaCadastro">Senha</label>
+                    <input type="password" id="senhaCadastro" name="senha" placeholder="Mínimo 8 caracteres" minlength="8" required>
+
+                    <button type="submit" class="btn primary">Cadastrar</button>
+                    <a href="../../index.html" class="btn secondary" role="button">Voltar</a>
+                </form>
+
+                <p class="note">Ao criar uma conta, você concorda com os termos de uso do sistema.</p>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <small>Vision Tech — &copy; <span id="year"></span></small>
+        </footer>
+    </div>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+
+    <script type="module" src="../js/form.js"></script>
+</body>
+</html>

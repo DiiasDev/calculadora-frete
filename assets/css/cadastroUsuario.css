@@ -1,0 +1,214 @@
+/* Adiciona import da fonte Inter */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+:root{
+	--primary: #010042;
+	--accent: #FF8C00;
+	--muted: #6b6f86;
+	--card-bg: #ffffff;
+	--bg-start: #f3f6fb;
+	--bg-end: #eef3ff;
+	--radius: 10px;
+	--max-width: 420px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+	margin:0;
+	font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+	background: linear-gradient(135deg,var(--bg-start),var(--bg-end));
+	color:#0b1226;
+	-webkit-font-smoothing:antialiased;
+	-moz-osx-font-smoothing:grayscale;
+	display:flex;
+	flex-direction:column;
+	min-height:100vh;
+}
+
+/* Header / brand */
+.site-header{
+	padding:28px 20px 0;
+}
+.brand{
+	display:flex;
+	align-items:center;
+	gap:14px;
+}
+.logo{
+	width:56px;
+	height:56px;
+	border-radius:8px;
+	background: linear-gradient(180deg,var(--primary), #09105a);
+	color:#fff;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	font-weight:700;
+	font-size:22px;
+	box-shadow: 0 6px 18px rgba(1,0,66,0.18);
+}
+.brand-text h1{
+	margin:0;
+	font-size:18px;
+	color:var(--primary);
+	letter-spacing:0.2px;
+}
+.brand-text .tagline{
+	margin:0;
+	font-size:13px;
+	color:var(--muted);
+}
+
+/* Page wrapper: garante layout em coluna e altura mínima para que o footer fique no fim */
+.page{
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+}
+
+/* Main container — garante que ocupe o espaço restante e centralize o card */
+.container{
+	flex: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 28px 20px;
+}
+
+/* Card */
+.card{
+	width:100%;
+	max-width:var(--max-width);
+	background:var(--card-bg);
+	border-radius:var(--radius);
+	padding:26px;
+	box-shadow: 0 10px 30px rgba(2,6,23,0.08);
+	border: 1px solid rgba(1,0,66,0.06);
+}
+.card h2{
+	margin:0 0 6px 0;
+	color:var(--primary);
+	font-size:20px;
+}
+.lead{
+	margin:0 0 16px 0;
+	color:var(--muted);
+	font-size:13px;
+}
+
+/* Form */
+.formCadastro{
+	display:flex;
+	flex-direction:column;
+	gap:12px;
+}
+label{
+	font-size:12px;
+	color:#3a3f56;
+	font-weight:600;
+	text-transform:uppercase;
+	letter-spacing:0.6px;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"]{
+	width:100%;
+	padding:12px 14px;
+	border-radius:8px;
+	border:1px solid rgba(2,6,23,0.08);
+	background: #fbfdff;
+	font-size:14px;
+	color:#0b1226;
+	transition: box-shadow .16s, border-color .16s;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
+}
+
+/* Placeholder: cross-browser */
+input::placeholder,
+input::-webkit-input-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder{
+	color:#9aa0b2;
+	opacity:1;
+}
+
+/* Focus: remove transform to avoid layout shift; keep visible shadow */
+input:focus{
+	outline: none;
+	border-color: rgba(255,140,0,0.9);
+	box-shadow: 0 6px 18px rgba(255,140,0,0.08);
+}
+
+/* Accessibility: show focus outline for keyboard users */
+input:focus-visible{
+	outline: 3px solid rgba(255,140,0,0.12);
+	outline-offset: 3px;
+}
+
+/* Buttons */
+.btn{
+	display:inline-flex;
+	align-items:center;
+	justify-content:center;
+	gap:8px;
+	padding:11px 16px;
+	border-radius:8px;
+	font-weight:600;
+	font-size:14px;
+	cursor:pointer;
+	text-decoration:none;
+	border:0;
+	margin-top:8px;
+}
+.btn.primary{
+	background: linear-gradient(90deg,var(--primary), #09105a);
+	color:#fff;
+	box-shadow: 0 8px 22px rgba(1,0,66,0.18);
+	transition: transform .12s, box-shadow .12s, opacity .12s;
+}
+.btn.primary:hover{ transform: translateY(-2px); opacity:0.98 }
+.btn.primary:active{ transform: translateY(0); }
+.btn.primary:focus-visible{
+	outline: 3px solid rgba(1,0,66,0.12);
+	outline-offset: 3px;
+}
+
+/* Secondary button: subtle hover and accessible focus */
+.btn.secondary{
+	background: transparent;
+	color:var(--primary);
+	border:1px solid rgba(1,0,66,0.12);
+}
+.btn.secondary:hover{
+	background: rgba(1,0,66,0.04);
+}
+.btn.secondary:active{ transform: translateY(0); }
+.btn.secondary:focus-visible{
+	outline: 3px solid rgba(1,0,66,0.08);
+	outline-offset: 3px;
+}
+
+.note{
+	margin-top:12px;
+	font-size:12px;
+	color:var(--muted);
+}
+
+/* Footer */
+.site-footer{
+	margin-top: auto;
+	text-align:center;
+	padding:18px 0 28px;
+	color: #7a7f95;
+	font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width:420px){
+	:root{--max-width:92%}
+	.card{padding:18px}
+	.brand-text h1{font-size:16px}
+}
