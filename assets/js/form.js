@@ -1,8 +1,9 @@
 import { Usuario } from "./usuarios.js"
 
-export default function FormCadastro() {
+let usuarioService = new Usuario
+
+export function FormCadastro() {
   try {
-    const usuarioService = new Usuario()
 
     const form = document.getElementById('form-cadastro')
 
@@ -18,4 +19,22 @@ export default function FormCadastro() {
   }
 }
 
+export function formLogin(){
+  try{
+
+    const form = document.getElementById('form-login')
+
+    if(form){
+      form.addEventListener('submit', (e) => {
+        e.preventDefault()
+        usuarioService.loginUsuario()
+      })
+    }
+    
+  } catch(error){
+    console.log('Erro chamar função de login: ', error)
+  }
+}
+
 FormCadastro()
+formLogin()

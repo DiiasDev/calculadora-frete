@@ -40,4 +40,28 @@ export class Usuario {
       CustomAlert.error('Erro ao cadastrar usuário. Tente novamente.')
     }
   }
+
+  loginUsuario(){
+    try{
+      const usuario = document.getElementById('usuario').value;
+      const senha = document.getElementById('senha').value;
+
+      const validaLogin = this.usuarios.find(user => user.usuario === usuario || user.senha === senha); 
+
+      if(!validaLogin){
+        CustomAlert.error('Usuário ou senha incorretos')
+        return
+      }
+
+      CustomAlert.success("Logando...")
+
+      setTimeout(() => {
+        window.location.href ="./assets/pages/homePage.html"
+      },1000)
+
+    } catch(error){
+      console.error('Erro ao logar: ', error)
+      CustomAlert.error('Erro ao fazer login. Tente novamente.')
+    }
+  }
 }
