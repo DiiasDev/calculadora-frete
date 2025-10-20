@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/assets/css/formFrete.css">
+    <link rel="stylesheet" href="/assets/css/customAlert.css">
+    <title>Cálculo de Frete</title>
+</head>
+<body>
+    <div class="frete-container">
+        <div class="header-section">
+            <h1 class="form-title">Cálculo de Frete</h1>
+            <a href="/assets/pages/homePage.html" class="home-btn" title="Voltar ao início" aria-label="Voltar à página inicial"></a>
+        </div>
+        <p class="form-description">
+            Preencha os dados necessários para calcular o valor do frete e acompanhar o processo.
+        </p>
+        <div class="step-progress">
+            <div class="step active">1</div>
+            <div class="step">2</div>
+            <div class="step">3</div>
+            <div class="step">4</div>
+            <div class="step">5</div>
+        </div>
+        <form class="frete-form">
+            <!-- Step 1 -->
+            <div class="form-step active">
+                <label for="peso">Peso do produto (KG)</label>
+                <input type="number" id="peso" name="peso" min="0" step="0.01" placeholder="Ex: 10.5" required>
+            </div>
+            <!-- Step 2 -->
+            <div class="form-step">
+                <label for="distancia">Distância (KM)</label>
+                <input type="number" id="distancia" name="distancia" min="0" step="0.1" placeholder="Ex: 150" required>
+            </div>
+            <!-- Step 3 -->
+            <div class="form-step">
+                <label for="taxa-base">Taxa Base (R$)</label>
+                <input type="number" id="taxa-base" name="taxa-base" min="0" step="0.01" placeholder="Ex: 50.00" required>
+            </div>
+            <!-- Step 4 -->
+            <div class="form-step">
+                <label for="taxa-peso">Taxa por Peso (R$/KG)</label>
+                <input type="number" id="taxa-peso" name="taxa-peso" min="0" step="0.01" placeholder="Ex: 2.50" required>
+            </div>
+            <!-- Step 5 -->
+            <div class="form-step">
+                <label for="taxa-distancia">Taxa por Distância (R$/KM)</label>
+                <input type="number" id="taxa-distancia" name="taxa-distancia" min="0" step="0.01" placeholder="Ex: 1.20" required>
+            </div>
+            <div class="form-navigation">
+                <button type="button" class="btn prev" disabled>Voltar</button>
+                <button type="button" class="btn next">Próximo</button>
+                <button type="submit" class="btn submit" style="display:none;">Calcular</button>
+            </div>
+        </form>
+    </div>
+    <script>
+        const steps = document.querySelectorAll('.form-step');
+        const progressSteps = document.querySelectorAll('.step-progress .step');
+        const btnPrev = document.querySelector('.btn.prev');
+        const btnNext = document.querySelector('.btn.next');
+        const btnSubmit = document.querySelector('.btn.submit');
+        let currentStep = 0;
+
+        function validateCurrentStep() {
+            const currentInput = steps[currentStep].querySelector('input[required]');
+            if (currentInput && !currentInput.value.trim()) {
+                currentInput.classList.add('error');
+                currentInput.focus();
+                return false;
+            }
+            if (currentInput) {
+                currentInput.classList.remove('error');
+            }
+            return true;
+        }
+
+        function updateSteps() {
+            steps.forEach((step, idx) => {
+                step.classList.toggle('active', idx === currentStep);
+            });
+            progressSteps.forEach((step, idx) => {
+                step.classList.toggle('active', idx === currentStep);
+                step.classList.toggle('completed', idx < currentStep);
+            });
+            btnPrev.disabled = currentStep === 0;
+            btnNext.style.display = currentStep === steps.length - 1 ? 'none' : '';
+            btnSubmit.style.display = currentStep === steps.length - 1 ? '' : 'none';
+        }
+
+        btnNext.addEventListener('click', () => {
+            if (!validateCurrentStep()) {
+                return;
+            }
+            if (currentStep < steps.length - 1) {
+                currentStep++;
+                updateSteps();
+            }
+        });
+
+        btnPrev.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                updateSteps();
+            }
+        });
+
+        document.querySelectorAll('input[required]').forEach(input => {
+            input.addEventListener('input', () => {
+                input.classList.remove('error');
+            });
+        });
+
+        document.querySelector('.frete-form').addEventListener('submit', (e) => {
+            if (!validateCurrentStep()) {
+                e.preventDefault();
+            }
+        });
+
+        updateSteps();
+    </script>
+</body>
+</html>
